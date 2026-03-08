@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
+    <title>GitHub Issues Tracker</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- Tailwind CSS + daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Outfit fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="min-h-screen flex justify-center items-center bg-white/90">
+    <div
+      class="flex flex-col justify-center items-center shadow-lg bg-white p-6 sm:p-8 rounded-2xl space-y-4 sm:space-y-5"
+    >
+      <!-- Logo section -->
+      <div
+        class="logo flex flex-col justify-center items-center space-y-2 w-full"
+      >
+        <div class="w-18 h-18 rounded-full flex items-center justify-center">
+          <img
+            src="./assets/github-logo.png"
+            alt="GitHub Logo"
+            class="w-full h-full"
+          />
+        </div>
+        <h2 class="font-bold text-xl sm:text-2xl mt-3">
+          GitHub Issues Tracker
+        </h2>
+        <p class="text-gray-600 text-base text-center">
+          Sign in to manage your issues efficiently
+        </p>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form w-full!">
+        <div class="card w-full bg-transparent">
+          <div class="card-body p-0">
+            <fieldset class="fieldset">
+              <label class="label font-medium text-neutral">Username</label>
+              <input
+                type="text"
+                id="input-name"
+                class="input bg-base-200 rounded-md"
+                placeholder="Enter Username"
+              />
+              <br />
+              <label class="label font-medium text-neutral">Password</label>
+              <input
+                type="password"
+                id="input-password"
+                class="input bg-base-200 rounded-md"
+                placeholder="Enter Password"
+              />
+              <button id="sign-in-btn" class="btn btn-primary mt-5 rounded-md">
+                Sign In
+              </button>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider Section -->
+      <div class="flex items-center justify-center w-full my-2">
+        <div class="flex-grow h-px bg-gray-300"></div>
+        <p class="px-3 text-gray-600 text-sm font-medium">OR</p>
+        <div class="flex-grow h-px bg-gray-300"></div>
+      </div>
+
+      <!-- Demo credential section -->
+      <div class="flex flex-col w-full space-y-2">
+        <p class="text-center text-gray-500 text-sm">Demo Credentials:</p>
+        <div
+          class="flex flex-col justify-center items-center bg-base-200 rounded-md shadow-md p-6"
+        >
+          <p class="font-semibold text-gray-800">
+            Username: <span class="font-normal text-gray-700">admin</span>
+          </p>
+          <p class="font-semibold text-gray-800">
+            Password: <span class="font-normal text-gray-700">admin123</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
