@@ -3,9 +3,30 @@ const openIssueBtn = document.getElementById("open-issue-btn");
 const closedIssueBtn = document.getElementById("closed-issue-btn");
 const issueCardsContainer = document.getElementById("issue-cards");
 
-allIssueBtn.addEventListener("click", loadAllIssueCards);
-openIssueBtn.addEventListener("click", loadOpenIssueCards);
-closedIssueBtn.addEventListener("click", loadClosedIssueCards);
+setActiveBtn(allIssueBtn);
+
+allIssueBtn.addEventListener("click", () => {
+  setActiveBtn(allIssueBtn);
+  loadAllIssueCards();
+});
+
+openIssueBtn.addEventListener("click", () => {
+  setActiveBtn(openIssueBtn);
+  loadOpenIssueCards();
+});
+
+closedIssueBtn.addEventListener("click", () => {
+  setActiveBtn(closedIssueBtn);
+  loadClosedIssueCards();
+});
+
+function setActiveBtn(activeBtn) {
+  allIssueBtn.classList.remove("btn-primary");
+  openIssueBtn.classList.remove("btn-primary");
+  closedIssueBtn.classList.remove("btn-primary");
+
+  activeBtn.classList.add("btn-primary");
+}
 
 async function loadAllIssueCards() {
   const response = await fetch(
@@ -31,6 +52,18 @@ async function loadClosedIssueCards() {
   const data = await response.json();
   const closedIssues = data.data.filter((issue) => issue.status === "closed");
   displayCards(closedIssues);
+}
+
+function getLabelColor(label) {
+  const labelColors = {
+    bug: "bg-red-100 text-red-700 border-red-200",
+    "help wanted": "bg-purple-100 text-purple-700 border-purple-200",
+    enhancement: "bg-green-100 text-green-700 border-green-200",
+    documentation: "bg-blue-100 text-blue-700 border-blue-200",
+    "good first issue": "bg-yellow-100 text-yellow-700 border-yellow-200",
+  };
+
+  return labelColors[label.toLowerCase()];
 }
 
 function displayCards(issues) {
@@ -77,7 +110,8 @@ function displayCards(issues) {
           <div>
             ${issue.labels
               .map(function (label) {
-                return `<button class="btn btn-soft btn-neutral h-6 rounded-full mr-1">${label}</button>`;
+                const labelColor = getLabelColor(label);
+                return `<button class="btn ${labelColor} border rounded-full h-6 text-xs px-2 mr-1 mb-1">${label}</button>`;
               })
               .join("")}
           </div>
