@@ -1,128 +1,41 @@
-# 🌟 Welcome To (সহজ সরল সিম্পল) Assignment - 5
-
-# **📅 Deadline For 60 marks:** 9th March, 2026 (11:59 pm ⏱️)  
-#  📅 No Deadline For 50 marks  
-# **📅 Deadline For 30 marks:** Any time after 9th March.
-
----
-
 # Assignment-05: GitHub Issues Tracker
 
+1️⃣ What is the difference between var, let, and const?
 
-### **API Endpoints:**
-###  **All Issues:** 
-  - https://phi-lab-server.vercel.app/api/v1/lab/issues 
+# Answer:
 
+1. var is function-scoped and can be redeclared and reassigned. It is hoisted to the top of its scope and initialized with undefined.
 
-###  **Single Issue:**
-   - https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+2. let is block-scoped and cannot be redeclared in the same scope, but can be reassigned. It is hoisted but not initialized, resulting in a temporal dead zone.
 
-   - Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
-
-
-###  **Search Issue:** https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
-
-   - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
+3. const is block-scoped and cannot be redeclared or reassigned. It must be initialized at the time of declaration. For objects and arrays, the reference cannot change but the contents can.
 
 
----
+2️⃣ What is the spread operator (...)?
 
-## 📝 Main Requirements
+# Answer:
 
-## 🎨 Design Part
-
-## Login Page
-- Create a login page containing a logo, title, and sub-title
-- Below that, there will be 2 inputs, a sign-in button, and a demo credential to sign in. Follow the Figma for this page 
-- Styled as per Figma
-
-## Main Page: 
-
-### Navbar: 
-
-- Navbar with website logo/name on the left
-- Search input and button on the right
-
-### Tab Section like Figma: 
-
-- 3 tab ( All, Open, Closed) at the top of this section.(**All**, **Open**, **Closed**)
-
-- Below the tab, there will be an icon, the issue count, some text on the left, and an open and closed marker on the right
-
-- Responsiveness: The website should be responsive for mobile devices. It is totally up to you. 
+The spread operator (...) allows an iterable (array, object, string) to be expanded into individual elements.
 
 
---- 
+3️⃣ What is the difference between map(), filter(), and forEach()?
 
+# Answer:
 
-## ⚙️ Functionalities
-- In login page, there will be default admin credentials (username, password). You need to sign in using these credentials.
+1. map() creates a new array by applying a function to each element of the original array. It returns a new array of the same length.
 
-- Load all issues and display as per Figma
+2. filter() creates a new array containing only the elements that pass a specified condition. It returns a new array that may be shorter than the original.
 
-- On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data 
+3. forEach() executes a function on each element of the array but does not return a new array. It is used for side effects like modifying existing data or performing actions.
 
-- Each card shows:
-  - Title
-  - Description
-  - Status 
-  - Author
-  - Priority
-  - Label
-  - CreatedAt
-- Clicking on an issue  card will open a modal and show all the information about that Issue. 
+4️⃣ What is an arrow function?
 
-### 🚀 Challenges
+# Answer:
 
+Arrow functions are a shorter syntax for writing function expressions.
 
-- Show the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top. 
+5️⃣ What are template literals?
 
-- Loading spinner on data load
+# Answer:
 
-- Show active button on changing category names
-
-- Implement Search Functionality and 8 meaningful github commit.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
-    - 1️⃣ What is the difference between var, let, and const?
-    - 2️⃣ What is the spread operator (...)?
-    - 3️⃣ What is the difference between map(), filter(), and forEach()?
-    - 4️⃣ What is an arrow function?
-    - 5️⃣ What are template literals?
-
-
----
-
-## 🛠️ Technology Stack
-
-- **HTML**
-- **CSS** (Vanilla/Tailwind/DaisyUI)
-- **JavaScript** (Vanilla)
-
----
-
-## 🔑 Demo Credentials
-
-```text
-Username: admin
-Password: admin123
-```
-
-
----
-
-### Optional: 
- - No need to show status: Open, Closed styles On modals. 
- - No Need to show icon on labels 
- - No need to apply styles on Priority 
---- 
-
-
-## 📤 What to submit
-
-- **GitHub Repository Link:**
-- **Live Site Link:**
-
----
-
-
+Template literals are string literals that allow embedded expressions, multi-line strings, and string interpolation using backticks (`) and ${}.
