@@ -2,6 +2,8 @@ const allIssueBtn = document.getElementById("all-issue-btn");
 const openIssueBtn = document.getElementById("open-issue-btn");
 const closedIssueBtn = document.getElementById("closed-issue-btn");
 const issueCardsContainer = document.getElementById("issue-cards");
+const issueCount = document.getElementById("issue-count");
+const spinner = document.getElementById("spinner");
 
 setActiveBtn(allIssueBtn);
 
@@ -28,30 +30,54 @@ function setActiveBtn(activeBtn) {
   activeBtn.classList.add("btn-primary");
 }
 
+function showSpinner() {
+  spinner.classList.remove("hidden");
+  issueCardsContainer.innerHTML = "";
+}
+
+function hideSpinner() {
+  spinner.classList.add("hidden");
+}
+
+function updateIssueCount(count) {
+  if (issueCount) {
+    issueCount.textContent = count;
+  }
+}
+
 async function loadAllIssueCards() {
+  showSpinner();
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await response.json();
+  updateIssueCount(data.data.length);
   displayCards(data.data);
+  hideSpinner();
 }
 
 async function loadOpenIssueCards() {
+  showSpinner();
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await response.json();
   const openIssues = data.data.filter((issue) => issue.status === "open");
+  updateIssueCount(openIssues.length);
   displayCards(openIssues);
+  hideSpinner();
 }
 
 async function loadClosedIssueCards() {
+  showSpinner();
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await response.json();
   const closedIssues = data.data.filter((issue) => issue.status === "closed");
+  updateIssueCount(closedIssues.length);
   displayCards(closedIssues);
+  hideSpinner();
 }
 
 function getLabelColor(label) {
@@ -138,3 +164,5 @@ function displayCards(issues) {
     issueCardsContainer.appendChild(card);
   });
 }
+
+document.addEventListener("DOMContentLoaded", loadAllIssueCards);
