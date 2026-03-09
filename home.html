@@ -39,6 +39,7 @@
     />
   </head>
   <body>
+    <!-- Header Section -->
     <header class="shadow-lg">
       <nav
         class="w-11/12 mx-auto py-3 flex flex-col space-y-2 md:flex-row justify-between items-center gap-2"
@@ -86,5 +87,111 @@
         </div>
       </nav>
     </header>
+
+    <!-- Main Container -->
+    <main class="space-y-3">
+      <!-- All/Open/Closed buttons -->
+      <div
+        class="w-9/12 mx-auto bg-white shadow-2xl rounded-md mt-12 space-x-2 p-4"
+      >
+        <button class="btn btn-primary sm:px-8" id="all-issue-btn">All</button>
+        <button class="btn sm:px-8" id="open-issue-btn">Open</button>
+        <button class="btn sm:px-8" id="closed-issue-btn">Closed</button>
+      </div>
+
+      <!-- Issue List Container -->
+      <div
+        class="w-9/12 mx-auto bg-base-200 shadow-xl space-y-2 rounded-md flex flex-col justify-between items-center"
+      >
+        <!-- Issue summary -->
+        <div
+          class="w-full p-4 bg-white rounded-tr-md rounded-tl-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        >
+          <!-- Left section with icon and text -->
+          <div class="flex justify-start items-center gap-2 w-full sm:w-auto">
+            <div
+              class="h-12 w-12 bg-purple-100 rounded-full flex justify-center items-center flex-shrink-0"
+            >
+              <img src="./assets/Aperture.png" class="w-[70%] h-[70%]" alt="" />
+            </div>
+            <div>
+              <h2 class="text-xl font-medium"><span>50 </span>Issues</h2>
+              <p class="text-gray-600 text-sm">
+                Track and manage your project issues
+              </p>
+            </div>
+          </div>
+
+          <!-- Right section with status indicators -->
+          <div
+            class="flex items-center justify-start sm:justify-center gap-5 font-medium w-full sm:w-auto"
+          >
+            <div class="flex items-center justify-center gap-1">
+              <div class="rounded-full bg-green-600 h-3 w-3"></div>
+              <p>Open</p>
+            </div>
+            <div class="flex items-center justify-center gap-1">
+              <div class="rounded-full bg-purple-600 h-3 w-3"></div>
+              <p>Closed</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Issue Cards -->
+        <div
+          class="w-full p-4 grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+        >
+          <!-- Issue card-->
+          <div
+            class="bg-white rounded-md border-t-3 min-w-[270px] shadow border-t-green-600 space-y-2"
+          >
+            <!-- Card top -->
+            <div class="w-full p-3 mb-3 space-y-3">
+              <div class="flex justify-between items-center">
+                <img src="./assets/Open-Status.png" class="w-5 h-5" alt="" />
+                <button class="btn btn-soft btn-error rounded-full h-6">
+                  HIGH
+                </button>
+              </div>
+
+              <!-- title, description and labels -->
+              <div class="flex gap-2 flex-col">
+                <h2 class="text-[18px] font-medium">
+                  Fix navigation menu on mobile devices
+                </h2>
+                <p class="text-gray-600">
+                  The navigation menu doesn't collapse properly on mobile
+                  devices...
+                </p>
+                <div>
+                  <button class="btn btn-soft btn-error h-6 rounded-full">
+                    Bug
+                  </button>
+                  <button class="btn btn-soft btn-warning h-6 rounded-full">
+                    Help Wanted
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Divider line -->
+            <div class="w-full h-[.5px] bg-gray-300"></div>
+
+            <!-- Card footer -->
+            <div class="p-3 text-xs">
+              <div class="flex justify-between">
+                <p class="text-gray-600">#1 by jone_doe</p>
+                <p class="text-gray-600">1/15/2024</p>
+              </div>
+
+              <div class="flex justify-between">
+                <p class="text-gray-600">Assignee:sarah_dev</p>
+                <p class="text-gray-600">Updated: 1/12/2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
