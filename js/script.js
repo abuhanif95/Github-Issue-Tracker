@@ -4,8 +4,40 @@ const closedIssueBtn = document.getElementById("closed-issue-btn");
 const issueCardsContainer = document.getElementById("issue-cards");
 const issueCount = document.getElementById("issue-count");
 const spinner = document.getElementById("spinner");
+const searchInput = document.getElementById("input-search");
 
 setActiveBtn(allIssueBtn);
+document.addEventListener("DOMContentLoaded", loadAllIssueCards);
+
+searchInput.addEventListener("input", function (e) {
+  const searchText = e.target.value.trim();
+
+  if (searchText === "") {
+    setActiveBtn(allIssueBtn);
+    loadAllIssueCards();
+  } else {
+    showSearch(searchText);
+  }
+});
+
+async function showSearch(searchText) {
+  showSpinner();
+
+  const response = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`,
+  );
+  const data = await response.json();
+  updateIssueCount(data.data.length);
+  displayCards(data.data);
+  resetActiveBtn();
+  hideSpinner();
+}
+
+function resetActiveBtn() {
+  allIssueBtn.classList.remove("btn-primary");
+  openIssueBtn.classList.remove("btn-primary");
+  closedIssueBtn.classList.remove("btn-primary");
+}
 
 allIssueBtn.addEventListener("click", () => {
   setActiveBtn(allIssueBtn);
@@ -46,6 +78,7 @@ function updateIssueCount(count) {
 }
 
 async function loadAllIssueCards() {
+  searchInput.value = "";
   showSpinner();
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -57,6 +90,7 @@ async function loadAllIssueCards() {
 }
 
 async function loadOpenIssueCards() {
+  searchInput.value = "";
   showSpinner();
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -69,6 +103,7 @@ async function loadOpenIssueCards() {
 }
 
 async function loadClosedIssueCards() {
+  searchInput.value = "";
   showSpinner();
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -232,5 +267,3 @@ function displayCards(issues) {
     issueCardsContainer.appendChild(card);
   });
 }
-
-document.addEventListener("DOMContentLoaded", loadAllIssueCards);
