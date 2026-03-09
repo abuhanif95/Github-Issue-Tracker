@@ -92,13 +92,81 @@ function getLabelColor(label) {
   return labelColors[label.toLowerCase()];
 }
 
+async function issueDetails(id) {
+  const response = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+  );
+  const data = await response.json();
+  displayIssueDetails(data.data);
+}
+
+function displayIssueDetails(issue) {
+  const detailsContainer = document.getElementById("details-container");
+  const createdDate = new Date(issue.createdAt).toLocaleDateString();
+  const statusColor = issue.status === "open" ? "btn-success" : "btn-secondary";
+  const statusText = issue.status === "open" ? "Opened" : "Closed";
+  const priorityColor =
+    issue.priority === "high"
+      ? "btn-error"
+      : issue.priority === "medium"
+        ? "btn-warning"
+        : "btn-info";
+  detailsContainer.innerHTML = `
+    <!-- title, description and labels -->
+    <div class="flex gap-2 flex-col">
+      <h2 class="text-[18px] font-semibold">
+        ${issue.title}
+      </h2>
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="btn ${statusColor} rounded-full h-6">${statusText}</button>
+        <span class="text-gray-700 text-sm">•</span>
+        <p class="text-gray-700 text-sm">
+          Opened by <span class="font-medium">${issue.author}</span>
+        </p>
+        <span class="text-gray-700 text-sm">•</span>
+        <p class="text-gray-700 text-sm">${createdDate}</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        ${issue.labels
+          .map(
+            (label) =>
+              `<button class="btn ${getLabelColor(label)} border rounded-full h-6 text-xs px-3">
+            ${label}
+          </button>`,
+          )
+          .join("")}
+      </div>
+      <p class="text-gray-600 mt-2">
+        ${issue.description}
+      </p>
+    </div>
+
+    <!-- assign and priority -->
+    <div class="p-3 flex justify-between bg-base-200 shadow rounded-md text-xs mt-4">
+      <div class="flex flex-col justify-center items-center">
+        <p class="text-gray-600">Assignee:</p>
+        <p class="text-gray-600 font-semibold">${issue.assignee || "unassigned"}</p>
+      </div>
+
+      <div class="flex flex-col justify-center items-center">
+        <p class="text-gray-600">Priority:</p>
+        <button class="btn btn-soft ${priorityColor} rounded-full h-6">
+          ${issue.priority.toUpperCase()}
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("issue_modal").showModal();
+}
+
 function displayCards(issues) {
   issueCardsContainer.innerHTML = "";
   issues.forEach((issue) => {
     const card = document.createElement("div");
     const topBorderColor =
       issue.status === "open" ? "border-t-green-600" : "border-t-purple-600";
-    card.className = `bg-white rounded-md border-t-3 min-w-[270px] shadow ${topBorderColor} space-y-2`;
+    card.className = `bg-white rounded-md border-t-3 min-w-[230px] shadow ${topBorderColor} space-y-2`;
 
     const createdDate = new Date(issue.createdAt).toLocaleDateString();
     const updatedDate = new Date(issue.updatedAt).toLocaleDateString();
@@ -127,10 +195,10 @@ function displayCards(issues) {
 
         <!-- title, description and labels -->
         <div class="flex gap-2 flex-col">
-          <h2 class="text-[18px] font-medium">
+          <h2 onclick="issueDetails(${issue.id})" class="text-[18px] font-medium">
             ${issue.title}
           </h2>
-          <p class="text-gray-600">
+          <p class="text-gray-600 font-sm">
             ${issue.description}
           </p>
           <div>
